@@ -1,5 +1,6 @@
 package com.home.finance.user;
 
+import com.home.finance.account.Account;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -40,6 +41,9 @@ public class User {
     @Enumerated(EnumType.STRING)
     @Column(name = "role", nullable = false)
     private Set<UserRole> roles = new LinkedHashSet<>();
+
+    @OneToMany(mappedBy = "user")
+    List<Account> accounts;
 
     // Needed for JPA - when user is loaded from DB, empty object is created and filled with values from DB
     protected User() {};
