@@ -7,6 +7,8 @@ import com.home.finance.user.repository.UserRepository;
 import com.home.finance.user.model.User;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class DefaultUserService implements UserService {
     private final UserRepository userRepository;
@@ -32,5 +34,10 @@ public class DefaultUserService implements UserService {
         User savedUser = userRepository.save(existingUser);
 
         return userRepository.save(savedUser);
+    }
+
+    @Override
+    public List<User> getAll() {
+        return userRepository.findAll();
     }
 }
