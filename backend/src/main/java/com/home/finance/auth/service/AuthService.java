@@ -1,10 +1,15 @@
-package com.home.finance.auth;
+package com.home.finance.auth.service;
 
+import com.home.finance.auth.model.JwtToken;
+import com.home.finance.auth.dto.LoginSuccess;
 import com.home.finance.auth.dto.AuthResponse;
 import com.home.finance.auth.dto.LoginRequest;
 import com.home.finance.auth.dto.RegisterRequest;
 import com.home.finance.user.dto.UserResponse;
-import com.home.finance.user.*;
+import com.home.finance.user.model.CustomUserDetails;
+import com.home.finance.user.model.User;
+import com.home.finance.user.model.UserRole;
+import com.home.finance.user.repository.UserRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

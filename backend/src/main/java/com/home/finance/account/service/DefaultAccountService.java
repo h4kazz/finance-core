@@ -1,9 +1,11 @@
-package com.home.finance.account;
+package com.home.finance.account.service;
 
+import com.home.finance.account.model.Account;
+import com.home.finance.account.repository.AccountRepository;
 import com.home.finance.exception.AccountNotFoundException;
 import com.home.finance.exception.DuplicateAccountException;
-import com.home.finance.user.User;
-import com.home.finance.user.UserRepository;
+import com.home.finance.user.model.User;
+import com.home.finance.user.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -31,7 +33,7 @@ public class DefaultAccountService implements AccountService {
     @Override
     public Account getById(Long id) {
         return accountRepository.findById(id)
-                .orElseThrow(() -> new AccountNotFoundException("Account does not exist by provided id: " + id));
+                .orElseThrow(() -> new AccountNotFoundException("Account does not exist by provided ID: " + id));
     }
 
     @Override
@@ -53,18 +55,6 @@ public class DefaultAccountService implements AccountService {
         return accountRepository.save(account);
     }
 
-    @Override
-    public Account updateAccount(Long id, Account account) {
-        Account existingAccount = getById(id);
-
-        if (existingAccount.getAccountNumber().equals(account.getAccountNumber())) {
-            throw new IllegalArgumentException("Account number is already " + account.getAccountNumber());
-        }
-
-        existingAccount.setAccountNumber(account.getAccountNumber());
-
-        return accountRepository.save(existingAccount);
-    }
 
     @Override
     public Account updateAccountForUser(Long id, String email, Account account) {

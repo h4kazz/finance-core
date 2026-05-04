@@ -1,6 +1,6 @@
-package com.home.finance.user;
+package com.home.finance.user.model;
 
-import com.home.finance.account.Account;
+import com.home.finance.account.model.Account;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;

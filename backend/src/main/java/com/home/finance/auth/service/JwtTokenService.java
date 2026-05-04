@@ -1,6 +1,7 @@
-package com.home.finance.auth;
+package com.home.finance.auth.service;
 
-import com.home.finance.user.UserRole;
+import com.home.finance.auth.model.JwtToken;
+import com.home.finance.user.model.UserRole;
 import org.springframework.security.oauth2.jose.jws.MacAlgorithm;
 import org.springframework.security.oauth2.jwt.JwsHeader;
 import org.springframework.security.oauth2.jwt.JwtClaimsSet;

@@ -1,4 +1,4 @@
-package com.home.finance.user;
+package com.home.finance.user.model;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

@@ -1,4 +1,4 @@
-package com.home.finance.auth;
+package com.home.finance.auth.model;
 
 import java.time.Instant;
 

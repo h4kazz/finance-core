@@ -1,4 +1,6 @@
-package com.home.finance.account;
+package com.home.finance.account.service;
+
+import com.home.finance.account.model.Account;
 
 import java.util.List;
 
@@ -13,7 +15,6 @@ public interface AccountService {
 
     Account createAccountForUser(Account account, String email);
 
-    Account updateAccount(Long id, Account account);
 
     Account updateAccountForUser(Long id, String email, Account account);
 

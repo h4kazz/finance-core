@@ -1,8 +1,6 @@
-package com.home.finance.account;
+package com.home.finance.account.dto;
 
-import com.home.finance.account.dto.CreateAccountRequest;
-import com.home.finance.account.dto.AccountResponse;
-import com.home.finance.account.dto.UpdateAccountRequest;
+import com.home.finance.account.model.Account;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;

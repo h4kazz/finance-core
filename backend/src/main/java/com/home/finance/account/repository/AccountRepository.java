@@ -1,5 +1,6 @@
-package com.home.finance.account;
+package com.home.finance.account.repository;
 
+import com.home.finance.account.model.Account;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

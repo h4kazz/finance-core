@@ -1,4 +1,4 @@
-package com.home.finance.auth.dto;
+package com.home.finance.user.dto;
 
 import java.util.List;
 

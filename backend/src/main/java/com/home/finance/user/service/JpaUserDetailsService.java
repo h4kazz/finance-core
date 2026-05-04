@@ -1,5 +1,7 @@
-package com.home.finance.user;
+package com.home.finance.user.service;
 
+import com.home.finance.user.repository.UserRepository;
+import com.home.finance.user.model.CustomUserDetails;
 import org.jspecify.annotations.NonNull;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

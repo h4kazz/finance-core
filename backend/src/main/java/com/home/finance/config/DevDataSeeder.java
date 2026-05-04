@@ -1,8 +1,8 @@
 package com.home.finance.config;
 
-import com.home.finance.user.User;
-import com.home.finance.user.UserRepository;
-import com.home.finance.user.UserRole;
+import com.home.finance.user.model.User;
+import com.home.finance.user.repository.UserRepository;
+import com.home.finance.user.model.UserRole;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

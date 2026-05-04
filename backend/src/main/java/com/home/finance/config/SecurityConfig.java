@@ -7,6 +7,7 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.convert.converter.Converter;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AbstractAuthenticationToken;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.ProviderManager;
@@ -48,7 +49,17 @@ public class SecurityConfig {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorize -> authorize
                                 .requestMatchers("/api/auth/register", "/api/auth/login", "/api/auth/logout").permitAll()
-                                .requestMatchers("/api/auth/me").authenticated()
+                                .requestMatchers(
+                                        "/h2-console/**",
+                                        "/swagger-ui/**",
+                                        "/swagger-ui.html",
+                                        "/v3/api-docs",
+                                        "/v3/api-docs/**"
+                                ).permitAll()
+                                .requestMatchers("/api/users/me", "/api/users/me/**").authenticated()
+                                .requestMatchers(HttpMethod.POST, "/api/categories/**").hasRole("ADMIN")
+                                .requestMatchers(HttpMethod.PUT, "/api/categories/**").hasRole("ADMIN")
+                                .requestMatchers(HttpMethod.DELETE, "/api/categories/**").hasRole("ADMIN")
                                 .anyRequest().authenticated()
                         )
                 .headers(headers -> headers.frameOptions(HeadersConfigurer.FrameOptionsConfig::sameOrigin))

@@ -1,5 +1,6 @@
-package com.home.finance.user;
+package com.home.finance.user.repository;
 
+import com.home.finance.user.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
