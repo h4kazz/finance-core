@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface AccountRepository extends JpaRepository<Account, Long> {
-    Account findByAccountNumber(String accountNumber);
+    Account findByAccountNumber(String number);
 
     boolean existsByAccountNumber(String accountNumber);
 

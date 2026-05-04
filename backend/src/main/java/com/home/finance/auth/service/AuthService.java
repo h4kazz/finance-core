@@ -3,7 +3,7 @@ package com.home.finance.auth;
 import com.home.finance.auth.dto.AuthResponse;
 import com.home.finance.auth.dto.LoginRequest;
 import com.home.finance.auth.dto.RegisterRequest;
-import com.home.finance.auth.dto.UserResponse;
+import com.home.finance.user.dto.UserResponse;
 import com.home.finance.user.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;

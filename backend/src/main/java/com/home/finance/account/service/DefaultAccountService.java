@@ -1,17 +1,10 @@
 package com.home.finance.account;
 
-import com.home.finance.account.dto.AccountResponse;
-import com.home.finance.account.dto.CreateAccountRequest;
 import com.home.finance.exception.AccountNotFoundException;
 import com.home.finance.exception.DuplicateAccountException;
 import com.home.finance.user.User;
 import com.home.finance.user.UserRepository;
-import jakarta.validation.Valid;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
