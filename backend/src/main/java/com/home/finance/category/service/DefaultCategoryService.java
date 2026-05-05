@@ -60,14 +60,14 @@ public class DefaultCategoryService implements CategoryService {
         Category category = getById(id);
 
         if (transactionRepository.existsByCategoryId(id)) {
-            throw new CategoryInUseException("Category is already used by transactions: " + id);
+            throw new CategoryInUseException(id);
         }
 
         try {
             categoryRepository.delete(category);
             categoryRepository.flush();
         } catch (DataIntegrityViolationException e) {
-            throw new CategoryInUseException("Category is already used by transactions: " + id);
+            throw new CategoryInUseException(id);
         }
     }
 }

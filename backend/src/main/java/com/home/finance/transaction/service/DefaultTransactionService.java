@@ -142,10 +142,9 @@ public class DefaultTransactionService implements TransactionService {
 
         if (transactionType == TransactionType.INCOME) {
             account.setBalance(currentBalance.subtract(amount));
-            return;
+        } else {
+            account.setBalance(currentBalance.add(amount));
         }
-
-        account.setBalance(currentBalance.add(amount));
     }
 
     private BigDecimal getBalance(Account account) {

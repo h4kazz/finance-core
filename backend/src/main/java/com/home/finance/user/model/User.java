@@ -54,4 +54,8 @@ public class User {
         this.password = password;
         this.roles = new LinkedHashSet<>(roles);
     }
+
+    public User(String email) {
+        this.email = email;
+    }
 }
