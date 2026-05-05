@@ -4,9 +4,11 @@ import com.home.finance.account.model.Account;
 import com.home.finance.account.repository.AccountRepository;
 import com.home.finance.exception.AccountNotFoundException;
 import com.home.finance.exception.DuplicateAccountException;
+import com.home.finance.transaction.repository.TransactionRepository;
 import com.home.finance.user.model.User;
 import com.home.finance.user.repository.UserRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -14,10 +16,12 @@ import java.util.List;
 public class DefaultAccountService implements AccountService {
     private final AccountRepository accountRepository;
     private final UserRepository userRepository;
+    private final TransactionRepository transactionRepository;
 
-    public DefaultAccountService(AccountRepository accountRepository, UserRepository userRepository) {
+    public DefaultAccountService(AccountRepository accountRepository, UserRepository userRepository, TransactionRepository transactionRepository) {
         this.accountRepository = accountRepository;
         this.userRepository = userRepository;
+        this.transactionRepository = transactionRepository;
     }
 
     @Override
@@ -69,8 +73,13 @@ public class DefaultAccountService implements AccountService {
         return accountRepository.save(existingAccount);
     }
 
+    @Transactional
     @Override
     public void delete(Long id) {
+        if (!accountRepository.existsById(id)) {
+            throw new AccountNotFoundException(id);
+        }
+        transactionRepository.deleteByAccountId(id);
         accountRepository.deleteById(id);
     }
 }

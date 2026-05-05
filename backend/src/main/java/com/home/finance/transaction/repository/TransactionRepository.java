@@ -35,4 +35,7 @@ public interface TransactionRepository extends JpaRepository<Transaction, Long> 
             LocalDate from,
             LocalDate to
     );
+
+    void deleteByAccountId(Long accountId);
+
 }
