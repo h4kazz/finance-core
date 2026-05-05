@@ -33,19 +33,19 @@ public class DefaultAccountService implements AccountService {
     @Override
     public Account getById(Long id) {
         return accountRepository.findById(id)
-                .orElseThrow(() -> new AccountNotFoundException("Account does not exist by provided ID: " + id));
+                .orElseThrow(() -> new AccountNotFoundException(id));
     }
 
     @Override
     public Account getByIdForUser(Long id, String email) {
         return accountRepository.findByIdAndUserEmail(id, email)
-                .orElseThrow(() -> new AccountNotFoundException("Account not found by ID: " + id));
+                .orElseThrow(() -> new AccountNotFoundException(id));
     }
 
     @Override
     public Account createAccountForUser(Account account, String email) {
         if (accountRepository.existsByAccountNumber(account.getAccountNumber())) {
-            throw new DuplicateAccountException("Account already exist provided account number: " + account.getAccountNumber());
+            throw new DuplicateAccountException(account.getAccountNumber());
         }
 
         User user = userRepository.findByEmail(email)
@@ -59,7 +59,7 @@ public class DefaultAccountService implements AccountService {
     @Override
     public Account updateAccountForUser(Long id, String email, Account account) {
         Account existingAccount = accountRepository.findByIdAndUserEmail(id, email)
-                .orElseThrow(() -> new AccountNotFoundException("Account not found: " + id));
+                .orElseThrow(() -> new AccountNotFoundException(id));
 
         if (existingAccount.getAccountNumber().equals(account.getAccountNumber())) {
             throw new IllegalArgumentException("Account number is already " + account.getAccountNumber());

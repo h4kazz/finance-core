@@ -10,6 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/users")
 public class UserController {
@@ -43,5 +45,11 @@ public class UserController {
         UserResponse response = userMapper.toResponse(updatedUser);
 
         return ResponseEntity.ok(response);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<UserResponse>> getAllUsers() {
+        List<User> users = userService.getAll();
+        return ResponseEntity.ok(userMapper.toResponseList(users));
     }
 }

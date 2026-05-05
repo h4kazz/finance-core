@@ -57,6 +57,7 @@ public class SecurityConfig {
                                         "/v3/api-docs/**"
                                 ).permitAll()
                                 .requestMatchers("/api/users/me", "/api/users/me/**").authenticated()
+                                .requestMatchers(HttpMethod.GET, "/api/users/**").hasRole("ADMIN")
                                 .requestMatchers(HttpMethod.POST, "/api/categories/**").hasRole("ADMIN")
                                 .requestMatchers(HttpMethod.PUT, "/api/categories/**").hasRole("ADMIN")
                                 .requestMatchers(HttpMethod.DELETE, "/api/categories/**").hasRole("ADMIN")

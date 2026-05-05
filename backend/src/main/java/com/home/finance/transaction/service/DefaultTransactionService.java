@@ -41,7 +41,7 @@ public class DefaultTransactionService implements TransactionService {
     @Override
     public Transaction getByIdForUser(Long id, String email) {
         return transactionRepository.findByIdAndAccountUserEmail(id, email)
-                .orElseThrow(() -> new TransactionNotFoundException("Transaction not found by ID: " + id));
+                .orElseThrow(() -> new TransactionNotFoundException(id));
     }
 
     @Override
@@ -90,7 +90,7 @@ public class DefaultTransactionService implements TransactionService {
     @Transactional
     public void deleteForUser(Long id, String email) {
         Transaction transaction = transactionRepository.findByIdAndAccountUserEmail(id, email)
-                .orElseThrow(() -> new TransactionNotFoundException("Transaction not found by ID: " + id));
+                .orElseThrow(() -> new TransactionNotFoundException(id));
 
         reverseFromBalance(transaction.getAccount(), transaction.getTransactionType(), transaction.getAmount());
         transactionRepository.delete(transaction);
@@ -102,7 +102,7 @@ public class DefaultTransactionService implements TransactionService {
         }
 
         return accountRepository.findByIdAndUserEmail(accountId, email)
-                .orElseThrow(() -> new AccountNotFoundException("Account not found by ID: " + accountId));
+                .orElseThrow(() -> new AccountNotFoundException(accountId));
     }
 
     @Override
@@ -116,7 +116,7 @@ public class DefaultTransactionService implements TransactionService {
         }
 
         return categoryRepository.findById(id)
-                .orElseThrow(() -> new CategoryNotFoundException("Category does not exist by provided ID: " + id));
+                .orElseThrow(() -> new CategoryNotFoundException(id));
     }
 
     private void validateCategoryType(Transaction transaction, Category category) {

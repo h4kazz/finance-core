@@ -22,7 +22,7 @@ public class DefaultUserService implements UserService {
     @Override
     public User getCurrentUser(String email) {
         return userRepository.findByEmail(email)
-                .orElseThrow(() -> new UserNotFoundException("User not found by email: " + email));
+                .orElseThrow(() -> new UserNotFoundException(email));
     }
 
     @Override

@@ -1,7 +1,7 @@
 package com.home.finance.exception;
 
-public class AccountNotFoundException extends RuntimeException {
-    public AccountNotFoundException(String message) {
-        super(message);
+public class AccountNotFoundException extends DefaultNotFoundException {
+    public AccountNotFoundException(Long id) {
+        super("Account not found by ID: " + id);
     }
 }

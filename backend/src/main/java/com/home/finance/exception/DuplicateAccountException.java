@@ -1,7 +1,7 @@
 package com.home.finance.exception;
 
-public class DuplicateAccountException extends RuntimeException {
-    public DuplicateAccountException(String message) {
-        super(message);
+public class DuplicateAccountException extends DefaultDuplicateException {
+    public DuplicateAccountException(String accountNumber) {
+        super("Account number already exist: " + accountNumber);
     }
 }

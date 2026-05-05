@@ -29,13 +29,13 @@ public class DefaultCategoryService implements CategoryService {
     @Override
     public Category getById(Long id) {
         return categoryRepository.findById(id)
-                .orElseThrow(() -> new CategoryNotFoundException("Category does not exist by provided id: " + id));
+                .orElseThrow(() -> new CategoryNotFoundException(id));
     }
 
     @Override
     public Category create(Category category) {
         if (categoryRepository.existsByNameAndTransactionType(category.getName(), category.getTransactionType())) {
-            throw new DuplicateCategoryException("Category already exists: " + category.getName());
+            throw new DuplicateCategoryException(category.getName());
         }
 
         return categoryRepository.save(category);
@@ -46,7 +46,7 @@ public class DefaultCategoryService implements CategoryService {
         Category existingCategory = getById(id);
 
         if (categoryRepository.existsByNameAndTransactionTypeAndIdNot(category.getName(), category.getTransactionType(), id)) {
-            throw new DuplicateCategoryException("Category already exists: " + category.getName());
+            throw new DuplicateCategoryException(category.getName());
         }
 
         existingCategory.setName(category.getName());
