@@ -21,6 +21,11 @@ public class GlobalExceptionHandler {
         return buildError(HttpStatus.CONFLICT, e.getMessage());
     }
 
+    @ExceptionHandler(BadCredentialsException.class)
+    public ResponseEntity<ApiError> handleBadCredentials(BadCredentialsException e) {
+        return buildError(HttpStatus.UNAUTHORIZED, e.getMessage());
+    }
+
     @ExceptionHandler(CategoryInUseException.class)
     public ResponseEntity<ApiError> handleCategoryInUse(CategoryInUseException e) {
 

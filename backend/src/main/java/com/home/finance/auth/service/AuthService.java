@@ -5,6 +5,7 @@ import com.home.finance.auth.dto.LoginSuccess;
 import com.home.finance.auth.dto.AuthResponse;
 import com.home.finance.auth.dto.LoginRequest;
 import com.home.finance.auth.dto.RegisterRequest;
+import com.home.finance.exception.BadCredentialsException;
 import com.home.finance.user.dto.UserResponse;
 import com.home.finance.user.model.CustomUserDetails;
 import com.home.finance.user.model.User;
@@ -62,7 +63,7 @@ public class AuthService {
             authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.email(), request.password())
             );
         } catch (AuthenticationException e) {
-            throw new RuntimeException(e);
+            throw new BadCredentialsException("Invalid email or password", e);
         }
 
         CustomUserDetails principal = (CustomUserDetails) authentication.getPrincipal();

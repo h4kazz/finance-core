@@ -6,6 +6,7 @@ import com.home.finance.auth.dto.RegisterRequest;
 import com.home.finance.auth.model.JwtToken;
 import com.home.finance.auth.service.AuthService;
 import com.home.finance.auth.service.JwtTokenService;
+import com.home.finance.exception.BadCredentialsException;
 import com.home.finance.user.dto.UserResponse;
 import com.home.finance.user.model.CustomUserDetails;
 import com.home.finance.user.model.User;
@@ -18,7 +19,6 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -81,12 +81,12 @@ class AuthServiceTest {
     }
 
     @Test
-    void login_WhenAuthenticationFails_ThrowsRuntimeException() {
+    void login_WhenAuthenticationFails_ThrowsBadCredentialsException() {
         LoginRequest request = new LoginRequest("user@test.com", "secret12");
         when(authenticationManager.authenticate(any(UsernamePasswordAuthenticationToken.class)))
-                .thenThrow(new BadCredentialsException("bad"));
+                .thenThrow(new org.springframework.security.authentication.BadCredentialsException("bad"));
 
-        assertThrows(RuntimeException.class, () -> authService.login(request));
+        assertThrows(BadCredentialsException.class, () -> authService.login(request));
     }
 
     @Test
